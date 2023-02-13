@@ -66,6 +66,7 @@ typedef enum { WIEGAND_MSB_FIRST = 0, WIEGAND_LSB_FIRST } wiegand_order_t;
 struct wiegand_reader {
 	gpio_num_t         gpio_d0, gpio_d1;
 	wiegand_callback_t callback;
+	void              *callback_args;
 	wiegand_order_t    bit_order;
 	wiegand_order_t    byte_order;
 
@@ -94,7 +95,7 @@ struct wiegand_reader {
 esp_err_t wiegand_reader_init(wiegand_reader_t *reader, gpio_num_t gpio_d0,
 							  gpio_num_t gpio_d1, bool internal_pullups,
 							  size_t buf_size, wiegand_callback_t callback,
-							  wiegand_order_t bit_order,
+							  void *callback_args, wiegand_order_t bit_order,
 							  wiegand_order_t byte_order);
 
 /**
